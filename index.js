@@ -18,14 +18,23 @@ function addMovie(e){
 }
 function deleteMovie(e){
     e.target.parentNode.remove();
-    message.textContent = "Movie Deleted";
+    message.textContent = `${e.target.parentNode.textContent.slice(0, -1)} deleted`;
+    revealMessage();
 }
 form.addEventListener('submit', addMovie);
 function crossOffMovie(e){
     e.target.classList.toggle('checked');
     if (e.target.classList.contains('checked') === true){
-        message.textContent = 'Movies checked';
+        message.textContent = `${e.target.textContent} watched.`;
     }else{
         message.textContent = 'Movie unchecked';
     }
+    revealMessage();
+}
+function revealMessage(){
+    message.classList.remove('hide');
+    setTimeout(function(){
+        message.classList.add('hide');
+    }, 1000)
+    
 }
